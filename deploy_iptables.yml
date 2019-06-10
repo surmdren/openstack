@@ -1,0 +1,14 @@
+- name: Install Firewalld
+  hosts: openstack
+  become: yes
+  tasks:
+   - name: Install the firewalld package
+     yum:
+      name: firewalld
+      state: latest
+   - name: Start and enable the firewalld service
+     service: 
+       name: firewalld
+       enabled: true
+       state: started
+
