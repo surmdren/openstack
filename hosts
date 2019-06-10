@@ -1,0 +1,17 @@
+[Controller]
+ctrl-6bc1.rhpds.opentlc.com
+
+[Compute_Node]
+comp00.example.com
+comp01.example.com
+
+[Storage]
+storage.example.com
+
+[ldap]
+ldap.example.com
+
+[openstack:children]
+Controller
+Compute_Node
+Storage
