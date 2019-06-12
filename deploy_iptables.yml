@@ -1,0 +1,25 @@
+---
+- name: Install iptables
+  hosts: Controller:Compute_Node:Storage
+  become: yes
+  tasks:
+   - name: Install the iptables package
+     yum:
+       name: iptables-services
+       state: latest
+   - name: Start and enable the iptables service
+     service:
+       name: iptables.service
+       enabled: true
+       state: started
+
+- name: Configure the controller iptables policy
+  hosts: Controller
+  become: yes
+  tasks:
+   - name: Add an INPUT rule to allow UDP traffic on port 123
+     iptables:
+       chain: INPUT
+       protocol: udp
+       destination_port: 123
+       jump: ACCEPT
