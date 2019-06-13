@@ -28,11 +28,22 @@
      shell: "/usr/sbin/iptables-save > /etc/sysconfig/iptables"
      notify:
        - restart iptables
-
-  
   handlers:
       - name: restart iptables
         service:
           name: iptables
           state: restarted
 
+- name: Disable Network Manager
+  hosts: Controller:Compute_Node:Storage
+  become: yes
+  tasks:
+   - name: stop and disable the Network Manager service
+     service:
+       name: NetworkManager.service
+       enabled: false
+   - name: setting the NM_CONTROLLED option to "no"
+     lineinfile:
+       name: /etc/sysconfig/network-scripts/ifcfg-eth0
+       state: present
+       line: NM_CONTROLLED="no"
