@@ -9,3 +9,16 @@
 
 - name: Set password for devops  
   shell: echo "devops:devops" | chpasswd
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: devops
+    state: present
+    key: "{{ lookup('file', '/home/devops/.ssh/open.pub') }}"
+
+- name: Configure sudo on the remote host for privileged escalation for the devops user
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    line: 'devops ALL=(ALL) NOPASSWD: ALL'
+  
