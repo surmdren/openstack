@@ -1,0 +1,5 @@
+---
+- name: Prepare the devops environment
+  hosts: openstack
+  roles:
+   - create_users

@@ -1,0 +1,11 @@
+---
+- name: Create user devops
+  user:
+    name: "{{ item }}"
+    state: present
+    update_password: on_create
+  loop:
+    - devops
+
+- name: Set password for devops  
+  shell: echo "devops:devops" | chpasswd
