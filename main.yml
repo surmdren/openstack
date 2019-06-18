@@ -1,5 +1,12 @@
 ---
 - name: Prepare the devops environment
   hosts: openstack
+  become: yes
   roles:
-   - create_users
+   - common
+
+- name: Configure control node iptables rule
+  hosts: Controller
+  become: yes
+  roles:
+   - control_node

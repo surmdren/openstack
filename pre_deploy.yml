@@ -1,6 +1,0 @@
-- name: Prepare the devops environment
-  hosts: Controller:Compute_Node:Storage
-  tasks:
-  - name: Create user devops
-    user:
-      name: devop

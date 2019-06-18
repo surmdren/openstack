@@ -1,0 +1,11 @@
+- name: Add an INPUT rule to allow UDP traffic on port 123
+  iptables:
+    chain: INPUT
+    protocol: udp
+    match: udp
+    destination_port: 123
+    jump: ACCEPT
+
+- name: Save current iptables policy
+  shell: "/usr/sbin/iptables-save > /etc/sysconfig/iptables"
+  notify: restart iptables

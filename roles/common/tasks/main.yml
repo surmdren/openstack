@@ -22,3 +22,24 @@
     state: present
     line: 'devops ALL=(ALL) NOPASSWD: ALL'
   
+- name: Install the iptables package
+  yum:
+    name: iptables-services
+    state: latest
+
+- name: Start and enable the iptables service
+  service:
+    name: iptables.service
+    enabled: true
+    state: started
+
+- name: Stop and disable the Network Manager service
+  service:
+    name: NetworkManager.service
+    enabled: false
+- name: setting the NM_CONTROLLED option to "no"
+  lineinfile:
+    name: /etc/sysconfig/network-scripts/ifcfg-eth0
+    state: present
+    line: NM_CONTROLLED="no"
+
