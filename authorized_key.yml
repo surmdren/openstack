@@ -1,7 +1,0 @@
-- name: Set authorized key taken from file
-  hosts: openstack
-  tasks:
-  - authorized_key:
-      user: devops
-      state: present
-      key: "{{ lookup('file', '/home/devops/.ssh/id_rsa.pub') }}"
