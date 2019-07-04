@@ -1,12 +1,12 @@
 [Controller]
-ctrl-304f.rhpds.opentlc.com
+controller
 
 [Compute_Node]
-comp00.example.com
-comp01.example.com
+compute1
+compute2
 
 [Storage]
-storage.example.com
+controller
 
 [ldap]
 ldap.example.com

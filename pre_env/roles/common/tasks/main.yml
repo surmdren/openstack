@@ -14,7 +14,7 @@
   authorized_key:
     user: devops
     state: present
-    key: "{{ lookup('file', '/home/devops/.ssh/open.pub') }}"
+    key: "{{ lookup('file', '/home/devops/.ssh/id_rsa.pub') }}"
 
 - name: Configure sudo on the remote host for privileged escalation for the devops user
   lineinfile:
@@ -39,7 +39,12 @@
     enabled: false
 - name: setting the NM_CONTROLLED option to "no"
   lineinfile:
-    name: /etc/sysconfig/network-scripts/ifcfg-eth0
+    name: "{{ item }}"
     state: present
     line: NM_CONTROLLED="no"
+  loop: 
+     - /etc/sysconfig/network-scripts/ifcfg-enp0s3
+     - /etc/sysconfig/network-scripts/ifcfg-enp0s8
+     - /etc/sysconfig/network-scripts/ifcfg-enp0s9
+     - /etc/sysconfig/network-scripts/ifcfg-enp0s10
 

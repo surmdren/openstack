@@ -1,0 +1,5 @@
+- name: Controller services
+  hosts: Controller
+  become: yes
+  roles:
+    - controller

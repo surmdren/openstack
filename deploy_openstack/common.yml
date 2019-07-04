@@ -1,0 +1,5 @@
+- name: deploy_openstack
+  hosts: openstack
+  become: yes
+  roles:
+    - common

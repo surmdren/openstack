@@ -1,0 +1,17 @@
+- name: Install mariadb rabbitmq-server
+  yum:
+    name: "{{ item }}"
+  loop:
+    - mariadb
+    - mariadb-server
+    - python2-PyMySQL
+    - rabbitmq-server
+
+- name: Enable and start mariadb and rabbitmq-server
+  service:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop:
+    - mysql
+    - rabbitmq-server.service
